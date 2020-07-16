@@ -21,8 +21,10 @@ public class NodeForwardTest extends AbstractInternalNodeTest {
         inNode.setNodesOut(Set.of(outNode));
 
         try {
-            MediaData media = helloWorldDriver.get();
-            inNode.forward(media);
+            Iterable<MediaData> media = helloWorldDriver.get();
+            for (MediaData m : media) {
+                inNode.forward(m);
+            }
         } catch (DriverException | MediaException e) {
             e.printStackTrace();
             fail();

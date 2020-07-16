@@ -16,7 +16,7 @@ public class SplitNode extends InnerNode {
     private static final long serialVersionUID = -8613386576438532917L;
 
     @Override
-    protected void accept(final MediaData media) throws MediaException, DriverException {
+    public void accept(final MediaData media) throws MediaException, DriverException {
         // No processing is done
         forward(media);
     }

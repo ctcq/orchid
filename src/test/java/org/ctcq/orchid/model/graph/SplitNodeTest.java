@@ -28,8 +28,10 @@ public class SplitNodeTest extends AbstractInternalNodeTest {
         inNode.setNodesOut(Set.of(outNode_1, outNode_2));
 
         try {
-            MediaData media = helloWorldDriver.get();
-            inNode.forward(media);
+            Iterable<MediaData> media = helloWorldDriver.get();
+            for (MediaData m : media) {
+                inNode.forward(m);
+            }
         } catch (DriverException | MediaException e) {
             e.printStackTrace();
             fail();

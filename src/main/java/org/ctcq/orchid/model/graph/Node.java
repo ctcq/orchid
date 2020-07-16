@@ -37,7 +37,7 @@ public abstract class Node implements Serializable {
      * @param media The media to be processed.
      * @throws MediaException If the MediaData can not be validated.
      */
-    protected abstract void accept(MediaData media) throws MediaException, DriverException;
+    public abstract void accept(MediaData media) throws MediaException, DriverException;
 
     /**
      * Forward {@link MediaData} proviously processed by {@link #accept(MediaData)}.

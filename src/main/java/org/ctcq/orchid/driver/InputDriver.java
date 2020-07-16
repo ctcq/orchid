@@ -1,5 +1,7 @@
 package org.ctcq.orchid.driver;
 
+import java.util.List;
+
 import org.ctcq.orchid.driver.exceptions.AuthenticationException;
 import org.ctcq.orchid.driver.exceptions.ConnectionFailureException;
 import org.ctcq.orchid.driver.exceptions.EndpointStatusException;
@@ -15,6 +17,8 @@ public interface InputDriver {
      * @throws NodeForwardException If the message could not be forwarded to subsequent nodes.
      * @return MediaData The resource as a {@link MediaData} representation.
      */
-    public MediaData get() 
+    public List<MediaData> get() 
         throws ConnectionFailureException, AuthenticationException, EndpointStatusException, NodeForwardException;
+
+    public String getAddress();
 }

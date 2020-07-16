@@ -1,5 +1,7 @@
 package org.ctcq.orchid.driver.standard.in;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import org.ctcq.orchid.driver.AuthMethod;
@@ -24,8 +26,8 @@ public class HelloWorldInputDriver extends EndpointDriver implements InputDriver
     }
 
     @Override
-    public MediaData get()
+    public List<MediaData> get()
     throws ConnectionFailureException, AuthenticationException, EndpointStatusException {
-        return new MediaData(this, RESPONSE_TEXT);
+        return Arrays.asList(new MediaData(this, RESPONSE_TEXT));
     }
 }

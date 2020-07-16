@@ -34,7 +34,7 @@ public abstract class EdgeNode extends Node {
     }
 
     @Override
-    protected void accept(final MediaData media) throws MediaException, DriverException {
+    public void accept(final MediaData media) throws MediaException, DriverException {
         // Check if the given message contains the correct tags
         if (!validateHtmlContent(media.getTags())) {
             throw new InvalidMediaFormatException();
