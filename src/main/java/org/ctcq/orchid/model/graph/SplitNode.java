@@ -10,16 +10,21 @@ import org.ctcq.orchid.model.media.exceptions.MediaException;
  */
 public class SplitNode extends InnerNode {
 
+    /**
+     *  Generated serial
+     */
+    private static final long serialVersionUID = -8613386576438532917L;
+
     @Override
-    protected void accept(MediaData media) throws MediaException, DriverException {
+    protected void accept(final MediaData media) throws MediaException, DriverException {
         // No processing is done
         forward(media);
     }
 
     @Override
-    protected void forward(MediaData media) throws MediaException, DriverException {
+    protected void forward(final MediaData media) throws MediaException, DriverException {
         // Send message to every outgoing node.
-        for (Node node : getNodesOut()) {
+        for (final Node node : getNodesOut()) {
             node.accept(media);
         }
     }

@@ -13,10 +13,14 @@ import org.ctcq.orchid.util.Trie;
  * Permits authorization handler {@link #auth} and endpoint driver {@link #endpointDriver}.
  */
 public abstract class EdgeNode extends Node {
-    private AuthorizationDriver auth;
+    /**
+     *  Generated serial
+     */
+    private static final long serialVersionUID = 7981469153257760022L;
+    private final AuthorizationDriver auth;
     protected EndpointDriver endpointDriver;
 
-    public EdgeNode(AuthorizationDriver auth, EndpointDriver endpointDriver) {
+    public EdgeNode(final AuthorizationDriver auth, final EndpointDriver endpointDriver) {
         this.auth = auth;
         this.endpointDriver = endpointDriver;
     }
@@ -28,10 +32,9 @@ public abstract class EdgeNode extends Node {
     public EndpointDriver getEndpointDriver() {
         return endpointDriver;
     }
-    
 
     @Override
-    protected void accept(MediaData media) throws MediaException, DriverException {
+    protected void accept(final MediaData media) throws MediaException, DriverException {
         // Check if the given message contains the correct tags
         if (!validateHtmlContent(media.getTags())) {
             throw new InvalidMediaFormatException();
@@ -42,20 +45,21 @@ public abstract class EdgeNode extends Node {
     }
 
     @Override
-    protected void forward(MediaData media) throws MediaException, DriverException {
-        for (Node node : getNodesOut()) {
+    protected void forward(final MediaData media) throws MediaException, DriverException {
+        for (final Node node : getNodesOut()) {
             node.accept(media);
         }
     }
 
     /**
      * Check whether the given HTML tags are specified as valid for this driver.
+     * 
      * @param tags The HTML tags without braces e.g. 'span'
      * @return Whether the given tags are valid.
      */
-    protected boolean validateHtmlContent(Iterable<String> tags) {
-        Trie validTags = endpointDriver.getValidHtmlTags();
-        for (String tag : tags) {
+    protected boolean validateHtmlContent(final Iterable<String> tags) {
+        final Trie validTags = endpointDriver.getValidHtmlTags();
+        for (final String tag : tags) {
             if (!validTags.seek(tag))
                 return false;
         }

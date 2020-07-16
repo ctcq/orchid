@@ -1,5 +1,6 @@
 package org.ctcq.orchid.model.graph;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,8 +11,13 @@ import org.ctcq.orchid.model.media.exceptions.MediaException;
 /**
  * Abstract superclass for all nodes types.
  */
-public abstract class Node {
+public abstract class Node implements Serializable {
     
+    /**
+     * Generated serial
+     */
+    private static final long serialVersionUID = -5721817472455145557L;
+
     private Integer id;
 
     private String name;

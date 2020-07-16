@@ -7,6 +7,10 @@ import org.ctcq.orchid.model.graph.exceptions.InvalidDriverException;
 
 public class InNode extends EdgeNode {
 
+    /**
+     *  Generated serial
+     */
+    private static final long serialVersionUID = -5681231158160058043L;
     protected InputDriver endpointDriver;
 
     /**
@@ -15,7 +19,7 @@ public class InNode extends EdgeNode {
      * @param endpointDriver The driver used to communicate with the endpoint.
      * @throws InvalidDriverException 
      */
-    public <T extends EndpointDriver & InputDriver> InNode(AuthorizationDriver auth, T endpointDriver) {
+    public <T extends EndpointDriver & InputDriver> InNode(final AuthorizationDriver auth, final T endpointDriver) {
         super(auth, endpointDriver);
     }
 }
