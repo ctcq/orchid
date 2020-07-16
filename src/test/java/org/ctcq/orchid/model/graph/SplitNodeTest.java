@@ -6,11 +6,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.Set;
 
 import org.ctcq.orchid.driver.exceptions.DriverException;
-import org.ctcq.orchid.driver.standard.in.HelloWorldInputDriver;
 import org.ctcq.orchid.driver.standard.out.LastRecievedOutputDriver;
 import org.ctcq.orchid.model.media.MediaData;
 import org.ctcq.orchid.model.media.exceptions.MediaException;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -18,17 +16,17 @@ import org.junit.jupiter.api.Test;
  */
 public class SplitNodeTest extends AbstractInternalNodeTest {
 
-    @Test@Disabled void receiveHelloWorld() {
+    @Test void receiveHelloWorld() {
         // Init second outDriver
         LastRecievedOutputDriver lastReceivedDriver_2 = new LastRecievedOutputDriver(null, null, null);
         // Init the graph
-        InNode inNode = new InNode(null, helloWorldDriver);
+        InNode inNode = new InNode(null, staticInputDriver);
         OutNode outNode_1 = new OutNode(null, lastReceivedDriver);
         OutNode outNode_2 = new OutNode(null, lastReceivedDriver_2);
         inNode.setNodesOut(Set.of(outNode_1, outNode_2));
 
         try {
-            Iterable<MediaData> media = helloWorldDriver.get();
+            Iterable<MediaData> media = staticInputDriver.get();
             for (MediaData m : media) {
                 inNode.forward(m);
             }
@@ -39,13 +37,13 @@ public class SplitNodeTest extends AbstractInternalNodeTest {
         // Check if the driver received the Hello World message
         assertEquals(
             lastReceivedDriver.getLastReceived().getContent(),
-            HelloWorldInputDriver.RESPONSE_TEXT
+            staticInputDriver.getResponseText()
         );  
         
         // Check if the second driver received the Hello World message
         assertEquals(
             lastReceivedDriver_2.getLastReceived().getContent(),
-            HelloWorldInputDriver.RESPONSE_TEXT
+            staticInputDriver.getResponseText()
         );
     }
 

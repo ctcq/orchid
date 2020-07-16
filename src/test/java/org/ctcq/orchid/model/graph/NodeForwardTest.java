@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.Set;
 
 import org.ctcq.orchid.driver.exceptions.DriverException;
-import org.ctcq.orchid.driver.standard.in.HelloWorldInputDriver;
 import org.ctcq.orchid.model.media.MediaData;
 import org.ctcq.orchid.model.media.exceptions.MediaException;
 import org.junit.jupiter.api.Test;
@@ -16,12 +15,12 @@ public class NodeForwardTest extends AbstractInternalNodeTest {
     @Test
     void forward_then_readTest() {
         // Init the graph
-        InNode inNode = new InNode(null, helloWorldDriver);
+        InNode inNode = new InNode(null, staticInputDriver);
         OutNode outNode = new OutNode(null, lastReceivedDriver);
         inNode.setNodesOut(Set.of(outNode));
 
         try {
-            Iterable<MediaData> media = helloWorldDriver.get();
+            Iterable<MediaData> media = staticInputDriver.get();
             for (MediaData m : media) {
                 inNode.forward(m);
             }
@@ -32,7 +31,7 @@ public class NodeForwardTest extends AbstractInternalNodeTest {
         // Check if the driver received the Hello World message
         assertEquals(
             lastReceivedDriver.getLastReceived().getContent(),
-            HelloWorldInputDriver.RESPONSE_TEXT
+            staticInputDriver.getResponseText()
         );
     }
 

@@ -17,17 +17,26 @@ import org.ctcq.orchid.model.media.MediaData;
  * Simple input driver that fetches an unformmatted 'Hello World!' text.
  * Only use this form testing purposes.
  */
-public class HelloWorldInputDriver extends EndpointDriver implements InputDriver {
+public class StaticStringInputDriver extends EndpointDriver implements InputDriver {
     
-    public static final String RESPONSE_TEXT = "Hello World!";
+    private String responseText;
 
-    public HelloWorldInputDriver(String address, Iterable<HtmlTag> validHtmlTags, Set<AuthMethod> validAuthMethods) {
+    public StaticStringInputDriver(String address, Iterable<HtmlTag> validHtmlTags, Set<AuthMethod> validAuthMethods) {
         super(null, null, null);
+        responseText = "Hello World!";
     }
 
     @Override
     public List<MediaData> get()
     throws ConnectionFailureException, AuthenticationException, EndpointStatusException {
-        return Arrays.asList(new MediaData(this, RESPONSE_TEXT));
+        return Arrays.asList(new MediaData(this, getResponseText()));
+    }
+
+    public String getResponseText() {
+        return responseText;
+    }
+
+    public void setResponseText(String responseText) {
+        this.responseText = responseText;
     }
 }
