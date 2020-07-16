@@ -3,24 +3,15 @@ package org.ctcq.orchid.model.graph;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import org.ctcq.orchid.driver.exceptions.DriverException;
 import org.ctcq.orchid.model.media.MediaData;
 import org.ctcq.orchid.model.media.exceptions.MediaException;
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
 
 /**
  * Abstract superclass for all nodes types.
  */
-@NodeEntity
 public abstract class Node {
     
-    @Id @GeneratedValue
     private Integer id;
 
     private String name;
@@ -51,17 +42,7 @@ public abstract class Node {
      */
     protected abstract void forward (MediaData media) throws MediaException, DriverException;
 
-    // Relationships
-
-    @JsonIgnoreProperties({"nodesIn"})
-    @Relationship(type = "NODES_OUT", direction = Relationship.OUTGOING)
     private Set<Node> nodesOut;
-
-    @JsonIgnoreProperties({"nodesOut"})
-    @Relationship(type = "NODES_IN", direction = Relationship.INCOMING)
-    private Set<Node> nodesIn;
-
-    // Getters and Setters
 
     public String getName() {
         return name;

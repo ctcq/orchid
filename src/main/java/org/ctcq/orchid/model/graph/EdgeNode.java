@@ -7,13 +7,11 @@ import org.ctcq.orchid.model.media.MediaData;
 import org.ctcq.orchid.model.media.exceptions.InvalidMediaFormatException;
 import org.ctcq.orchid.model.media.exceptions.MediaException;
 import org.ctcq.orchid.util.Trie;
-import org.neo4j.ogm.annotation.NodeEntity;
 
 /**
  * Abstract superclass for all ingoing and outgoing nodes.
  * Permits authorization handler {@link #auth} and endpoint driver {@link #endpointDriver}.
  */
-@NodeEntity
 public abstract class EdgeNode extends Node {
     private AuthorizationDriver auth;
     protected EndpointDriver endpointDriver;
