@@ -15,8 +15,8 @@ public class NodeForwardTest extends AbstractInternalNodeTest {
     @Test
     void forward_then_readTest() {
         // Init the graph
-        InNode inNode = new InNode(null, staticInputDriver);
-        OutNode outNode = new OutNode(null, lastReceivedDriver);
+        InNode inNode = new InNode("in", staticInputDriver);
+        OutNode outNode = new OutNode("out", lastReceivedDriver);
         inNode.setNodesOut(Set.of(outNode));
 
         try {

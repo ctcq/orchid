@@ -2,7 +2,6 @@ package org.ctcq.orchid.model.graph;
 
 import org.ctcq.orchid.driver.EndpointDriver;
 import org.ctcq.orchid.driver.InputDriver;
-import org.ctcq.orchid.driver.auth.AuthorizationDriver;
 import org.ctcq.orchid.model.graph.exceptions.InvalidDriverException;
 
 public class InNode extends EdgeNode {
@@ -19,7 +18,7 @@ public class InNode extends EdgeNode {
      * @param endpointDriver The driver used to communicate with the endpoint.
      * @throws InvalidDriverException 
      */
-    public <T extends EndpointDriver & InputDriver> InNode(final AuthorizationDriver auth, final T endpointDriver) {
-        super(auth, endpointDriver);
+    public <T extends EndpointDriver & InputDriver> InNode(final String name, final T endpointDriver) {
+        super(name, endpointDriver);
     }
 }

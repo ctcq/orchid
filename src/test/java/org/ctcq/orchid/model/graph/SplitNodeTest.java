@@ -20,9 +20,9 @@ public class SplitNodeTest extends AbstractInternalNodeTest {
         // Init second outDriver
         LastRecievedOutputDriver lastReceivedDriver_2 = new LastRecievedOutputDriver(null, null, null);
         // Init the graph
-        InNode inNode = new InNode(null, staticInputDriver);
-        OutNode outNode_1 = new OutNode(null, lastReceivedDriver);
-        OutNode outNode_2 = new OutNode(null, lastReceivedDriver_2);
+        InNode inNode = new InNode("in", staticInputDriver);
+        OutNode outNode_1 = new OutNode("out1", lastReceivedDriver);
+        OutNode outNode_2 = new OutNode("out2", lastReceivedDriver_2);
         inNode.setNodesOut(Set.of(outNode_1, outNode_2));
 
         try {

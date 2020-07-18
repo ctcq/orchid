@@ -1,7 +1,6 @@
 package org.ctcq.orchid.model.graph;
 
 import org.ctcq.orchid.driver.EndpointDriver;
-import org.ctcq.orchid.driver.auth.AuthorizationDriver;
 import org.ctcq.orchid.driver.exceptions.DriverException;
 import org.ctcq.orchid.model.media.MediaData;
 import org.ctcq.orchid.model.media.exceptions.InvalidMediaFormatException;
@@ -17,16 +16,11 @@ public abstract class EdgeNode extends Node {
      *  Generated serial
      */
     private static final long serialVersionUID = 7981469153257760022L;
-    private final AuthorizationDriver auth;
     protected EndpointDriver endpointDriver;
 
-    public EdgeNode(final AuthorizationDriver auth, final EndpointDriver endpointDriver) {
-        this.auth = auth;
+    public EdgeNode(final String name, final EndpointDriver endpointDriver) {
+        super(name);
         this.endpointDriver = endpointDriver;
-    }
-
-    public AuthorizationDriver getAuth() {
-        return auth;
     }
 
     public EndpointDriver getEndpointDriver() {

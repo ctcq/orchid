@@ -4,23 +4,18 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import org.ctcq.orchid.driver.EndpointDriver;
 
 /**
  * Represents input data throughout the whole graph.
  */
-@Entity
 public class MediaData {
+
+    public static final String DEFAULT_LOCALE = "EN";
 
     /**
      * Unique message id
      */
-    @Id
-    @GeneratedValue
     private Long id;
     /**
      * The driver object that originally spawned this message.
@@ -32,23 +27,30 @@ public class MediaData {
      */
     private String content;
 
+    /**
+     * Locale of this message.
+     */
+    private String locale;
+
     private static final Pattern tagRegexPattern = Pattern.compile("<[a-zA-Z]+>");
 
-    public MediaData(EndpointDriver sourceDriver, String content) {
+    public MediaData(final EndpointDriver sourceDriver, final String content) {
         this.sourceDriver = sourceDriver;
         this.content = content;
+        this.locale = DEFAULT_LOCALE;
     }
 
-    public MediaData () {
+    public MediaData() {
         // Stays empty
     }
 
     /**
-     * @return A list of unescaped, unique HTML opening tags contained in the message.
+     * @return A list of unescaped, unique HTML opening tags contained in the
+     *         message.
      */
     public Iterable<String> getTags() {
-        HashSet<String> tags = new HashSet<String>(); 
-        Matcher matcher = tagRegexPattern.matcher(this.content);
+        final HashSet<String> tags = new HashSet<String>();
+        final Matcher matcher = tagRegexPattern.matcher(this.content);
         while (matcher.find()) {
             tags.add(matcher.group());
         }
@@ -65,6 +67,10 @@ public class MediaData {
 
     public String getContent() {
         return content;
+    }
+
+    public String getLocale() {
+        return locale;
     }
 
     @Override

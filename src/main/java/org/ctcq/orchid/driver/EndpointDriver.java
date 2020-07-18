@@ -7,6 +7,8 @@ import java.util.Set;
 import org.ctcq.orchid.model.media.HtmlTag;
 import org.ctcq.orchid.model.media.MediaData;
 import org.ctcq.orchid.util.Trie;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Base class for all enpoint drivers. Subclasses are used 
@@ -14,6 +16,8 @@ import org.ctcq.orchid.util.Trie;
  * of the graph. 
  */
 public abstract class EndpointDriver {
+    protected Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+
     /**
      * String pointing to the API endpoint.
      * This can be an HTTP endpoint or a local file. 

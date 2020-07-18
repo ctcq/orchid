@@ -18,9 +18,7 @@ public abstract class Node implements Serializable {
      */
     private static final long serialVersionUID = -5721817472455145557L;
 
-    private Integer id;
-
-    private String name;
+    protected String name;
 
     public Node() {
         // Empty constructor
@@ -64,10 +62,5 @@ public abstract class Node implements Serializable {
 
     public void setNodesOut(Set<Node> nodesOut) {
         this.nodesOut = nodesOut;
-    }
-
-    @Override
-    public String toString() {
-        return "Node [id=" + id + ", name=" + name + ", nodesIn=" + nodesOut + "]";
     }
 }

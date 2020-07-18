@@ -1,4 +1,5 @@
 HELP.md
+*.log
 .gradle
 gradle
 gradlew
