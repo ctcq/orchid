@@ -149,16 +149,16 @@ class NodeGraphTest {
         try {
             graph.disconnect(node1, node2);
             fail();
-        } catch (NodesNotConnectedException e) {
+        } catch (final NodesNotConnectedException e) {
             // Success
-        } catch (NodeNotFoundException e) {
+        } catch (final NodeNotFoundException e) {
             fail();
         }
 
         // Now connect
         try {
             graph.connect(node1, node2);
-        } catch (NodeNotFoundException e) {
+        } catch (final NodeNotFoundException e) {
             fail();
         }
 
@@ -172,6 +172,37 @@ class NodeGraphTest {
         // Check if nodes are really disconnected
         assertFalse(node1.getNodesOut().contains(node2));
 
+    }
+
+    @Test void disconnectInvalidTest() {
+        final NodeGraph graph = new NodeGraph();
+        final Node node1 = new InNode("node1", null);
+        final Node node2 = new InNode("node2", null);
+
+        try {
+            graph.disconnect(node1, node2);
+            fail();
+        } catch (final NodeNotFoundException e) {
+            // As expected
+        } catch (NodesNotConnectedException e) {
+            fail();
+        }
+
+        try{
+            graph.add(node1);
+            graph.add(node2);
+        } catch (final NodeAlreadyExistsException e) {
+            fail();
+        }
+
+        try {
+            graph.disconnect(node1, node2);
+            fail();
+        } catch (final NodesNotConnectedException e) {
+            // As expected
+        } catch (NodeNotFoundException e) {
+            fail();
+        }
     }
 
     @Test

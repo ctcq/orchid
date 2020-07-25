@@ -55,7 +55,7 @@ public class DriverDispatcher extends Thread {
     /**
      * Search for new messages from all registered {@link InNode} instances.
      */
-    private void dispatch() {
+    public void dispatch() {
         // Probe all input drivers
         logger.info("Probing Input Nodes");
         for (final InNode inNode : inNodes) {
