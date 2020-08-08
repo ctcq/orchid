@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.ctcq.orchid.driver.EndpointDriver;
+import org.jsoup.Jsoup;
 
 /**
  * Represents input data throughout the whole graph.
@@ -34,10 +35,20 @@ public class MediaData {
 
     private static final Pattern tagRegexPattern = Pattern.compile("<[a-zA-Z]+>");
 
+    /**
+     * Create a new MediaData instance that can be handled by {@link Node} instances
+     * and passed to and {@link org.ctcq.orchid.model.graph.OutNode}.
+     * 
+     * Input is clean with {@link Jsoup#clean(String, org.jsoup.safety.Whitelist)} whitelist function.
+     * @param sourceDriver The {@link org.ctcq.orchid.driver.InputDriver} the message originated from.
+     * @param content The HTML String as the message content.
+     */
     public MediaData(final EndpointDriver sourceDriver, final String content) {
         this.sourceDriver = sourceDriver;
-        this.content = content;
         this.locale = DEFAULT_LOCALE;
+        
+        // Filter content for unsafe HTML
+        this.content = content;   
     }
 
     public MediaData() {
